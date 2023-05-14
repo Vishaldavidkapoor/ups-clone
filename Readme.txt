@@ -1,1 +1,1 @@
-A react native project with TypeScript graph ql tailwind css and step zen. It is a clone of the apps UPS which is a delivery app for users to track their order. Step Zen is used to create GraphQL queries with its commands.
+A react native project with TypeScript, graph ql, tailwind css and step zen. It is a clone of the apps UPS which is a delivery app for users to track their order. Step Zen is used to create GraphQL queries with its commands.
