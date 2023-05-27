@@ -10,6 +10,7 @@ import { Image, Input } from '@rneui/themed';
 import { GET_CUSTOMERS } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
 import CustomerCard from '../components/CustomerCard';
+import OrdersScreen from './OrdersScreen';
 
 export type CustomersScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabStackParamList, 'Customers'>,
@@ -20,7 +21,7 @@ const CustomersScreen = () => {
 
   const tw = useTailwind();
   const navigation = useNavigation<CustomersScreenNavigationProp>();
-  const [input, setInput] = useState<string>();
+  const [input, setInput] = useState<string>('');
   const { loading, error, data } = useQuery(GET_CUSTOMERS);
 
   useLayoutEffect(() => {
@@ -42,9 +43,11 @@ const CustomersScreen = () => {
         onChangeText={setInput}
         containerStyle={tw("bg-white pt-5 pb-0 px-10")} />
       {
-        data?.getCustomers.map(({ name: ID, value: { email, name } }: CustomerResponse) => {
-            <CustomerCard key={ID } userId={ID} email={email} name={name}/>
-        })
+        data?.getCustomers?.filter((customer: CustomerList) =>
+          customer.value.name.includes(input))
+          .map(({ name: ID, value: { email, name } }: CustomerResponse) => {
+            return <CustomerCard key={ID + name} userId={ID} name={name} email={email} />
+          })
       }
     </ScrollView>
   )

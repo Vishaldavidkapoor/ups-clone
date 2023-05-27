@@ -1,5 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { TailwindProvider } from 'tailwind-rn';
 import utilities from './tailwind.json';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,7 +7,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 
 const client = new ApolloClient({
-  uri: 'https://dashboard.stepzen.com/explorer?endpoint=api%2Fflailing-seastar',
+  uri: 'http://localhost:5001/api/historical-labradoodle',
   cache: new InMemoryCache(),
 });
 
