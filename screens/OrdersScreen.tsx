@@ -12,9 +12,8 @@ import { Button, Image } from '@rneui/themed';
 import OrderCard from '../components/OrderCard';
 
 
-type OrderScreenNavigationProp = CompositeNavigationProp<BottomTabNavigationProp<TabStackParamList, "Orders">, NativeStackNavigationProp<RootStackParamList>>;
+export type OrderScreenNavigationProp = CompositeNavigationProp<BottomTabNavigationProp<TabStackParamList, "Orders">, NativeStackNavigationProp<RootStackParamList>>;
 
-// type OrderScreenRootProp = RouteProp<RootStackParamList, "Order">
 
 const OrdersScreen = () => {
   const tw = useTailwind();
@@ -28,7 +27,7 @@ const OrdersScreen = () => {
       headerShown: false,
       tabBarLabel: ({ focused, color }) => (
         <Text style={{ color: focused ? "#EB6A7C" : color, fontSize: 10 }}>Orders</Text>
-      )
+      ),
     });
   }, []);
 
@@ -47,7 +46,6 @@ const OrdersScreen = () => {
         >
           {ascending ? "Showing Older First" : "Showing Newer First"}
         </Button>
-        <>
         {
             orders?.sort((a, b) => {
               if (ascending) {
@@ -55,11 +53,10 @@ const OrdersScreen = () => {
               } else {
                 return new Date(a.createdAt) < new Date(b.createdAt) ? 1 : -1;
               }
-            }).map((order) => {
-              <OrderCard key={order.trackingId} item={order} />
+            }).map((order) =>  {
+              return (<OrderCard key={order.trackingId} item={order} />)
             })
           }
-          </>
           
       </View>
     </ScrollView>
